@@ -2,13 +2,18 @@ from flask import render_template
 
 from . import app
 
+from .models import ListaMovimientos
+
 # mediante un decorador asignamos una ruta (path) de la URL
 # a la función que debe ejecutarse cuando se recibe una petición 
 # con esa ruta
 
 @app.route('/')
 def movements():
-    return render_template("inicio.html")
+    lista = ListaMovimientos()
+    lista.leer_desde_archivo()
+
+    return render_template("inicio.html", movs = lista.lista_movimientos )
 
 @app.route('/purchase')
 def purchase():

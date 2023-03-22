@@ -4,46 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cryptos - Tabla de movimientos </title>
-    <style>
-        .lista{
-            border: solid thin black;
-            border-collapse: collapse;
-            margin: 16px 0;
-        }
-        .lista td, 
-        .lista th {
-            border: solid thin black;
-            padding: 5px;
-        }
-    </style>
+    <title>Cryptos - Simulador de inversiones en Cryptos </title>
+    <link rel="stylesheet" href="static/css/flat-remix.css">
+    <link rel="stylesheet" href="static/css/styles.css">
 </head>
+
 <body>
+
     <header>Tabla de movimientos</header>
     <nav>
-        Inicio | Compra |
+        Inicio | Compra | Estado
     </nav>
+    <main>
+        <table class="paper">
+            <tr>
+                <th class="titulo-table">Fecha</th>
+                <th class="titulo-table">Hora</th>
+                <th class="titulo-table">From</th>
+                <th class="titulo-table">Q</th>
+                <th class="titulo-table">To</th>
+                <th class="titulo-table">Q</th>
+                <th class="titulo-table">P_U</th>
+            </tr>
+            {% for m in movs %}
+            <tr>
+                <td>{{m.fecha}}</td>
+                <td>{{m.hora}}</td>
+                <td>{{m.divisa_1}}</td>
+                <td class="numero">{{m.cantidad_1}}</td>
+                <td>{{m.divisa_2}}</td>
+                <td class="numero">{{m.cantidad_2}}</td>
+                <td class="numero">{{m.P_U}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
 
-    <table class="lista">
-        <tr>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>From</th>
-            <th>Q</th>
-            <th>To</th>
-            <th>Q</th>
-            <th>P.U</th>
-        </tr>
-        <tr>
-            <td>dd/mm/yy</td>
-            <td>hh:mm:ss</td>
-            <td>EUR</td>
-            <td>7.625,15</td>
-            <td>BTC</td>
-            <td>1,00</td>
-            <td>7625,15€</td>
-        </tr>
-    </table>
-    <footer> Simulador inversión Cryptos </footer>
+    <footer class ="pie-pagina"> Simulador inversión Cryptos </footer>
 </body>
 </html>

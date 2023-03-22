@@ -1,0 +1,49 @@
+header {
+    background-color: #FFA07A80;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bolder;
+    line-height: 50px;
+    padding-left: 15px;
+}
+
+nav {
+    background-color: #FFFAF0ff;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    height: 25px;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 25px;
+    padding-left: 15px;
+}
+
+main {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100px;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+
+}
+
+table.paper {
+    width: 100%;
+
+}
+
+.titulo-table {
+    border-bottom: solid thin #000000 ;
+    text-align: center;
+}
+
+.pie-pagina {
+    padding: 20px;
+    border-top: solid thin #A9A9A9 ;
+}
+
+.numero {
+    text-align: right;
+}
