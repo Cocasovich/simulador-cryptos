@@ -25,10 +25,20 @@
                 <th class="titulo-table">To</th>
                 <th class="titulo-table">Q</th>
                 <th class="titulo-table">P_U</th>
-            </tr>
+            </tr> 
+
+
+
+            {% if movs%}    
             {% for m in movs %}
             <tr>
-                <td>{{m.fecha}}</td>
+                <td>
+                 {% if m.fecha%}
+                 {{m.fecha}}
+                 {% else %}
+                 ---
+                 {% endif %}
+                </td>
                 <td>{{m.hora}}</td>
                 <td>{{m.divisa_1}}</td>
                 <td class="numero">{{m.cantidad_1}}</td>
@@ -36,8 +46,22 @@
                 <td class="numero">{{m.cantidad_2}}</td>
                 <td class="numero">{{m.P_U}}</td>
             </tr>
+            {% if m.has_errors %}
+            <tr>
+                <td></td>
+                <td colspan="6">
+                    {%for error in m.errores%}
+                    <p class="error"> {{error}} </p>  
+                    {%endfor%}
+                </td>
+            </tr>
+            {% endif %}
             {% endfor %}
-        </table>
+            {% else %}
+                <td colspan="7" class ="lista-vacia"> No hay movimientos </td>
+            {% endif %}
+       
+        </table>     
     </main>
 
     <footer class ="pie-pagina"> Simulador inversión Cryptos </footer>
