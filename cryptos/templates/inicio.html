@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cryptos - Simulador de inversiones en Cryptos </title>
-    <link rel="stylesheet" href="static/css/flat-remix.css">
-    <link rel="stylesheet" href="static/css/styles.css">
-</head>
 
-<body>
+{% extends "base.html"%}
 
-    <header>Tabla de movimientos</header>
-    <nav>
-        Inicio | Compra | Estado
-    </nav>
-    <main>
-        <table class="paper">
+{% block contenido %}  
+<table class="paper">
             <tr>
                 <th class="titulo-table">Fecha</th>
                 <th class="titulo-table">Hora</th>
@@ -26,8 +12,6 @@
                 <th class="titulo-table">Q</th>
                 <th class="titulo-table">P_U</th>
             </tr> 
-
-
 
             {% if movs%}    
             {% for m in movs %}
@@ -40,10 +24,10 @@
                  {% endif %}
                 </td>
                 <td>{{m.hora}}</td>
-                <td>{{m.divisa_1}}</td>
-                <td class="numero">{{m.cantidad_1}}</td>
-                <td>{{m.divisa_2}}</td>
-                <td class="numero">{{m.cantidad_2}}</td>
+                <td>{{m.moneda_from}}</td>
+                <td class="numero">{{m.cantidad_from}}</td>
+                <td>{{m.moneda_to}}</td>
+                <td class="numero">{{m.cantidad_to}}</td>
                 <td class="numero">{{m.P_U}}</td>
             </tr>
             {% if m.has_errors %}
@@ -61,9 +45,5 @@
                 <td colspan="7" class ="lista-vacia"> No hay movimientos </td>
             {% endif %}
        
-        </table>     
-    </main>
-
-    <footer class ="pie-pagina"> Simulador inversión Cryptos </footer>
-</body>
-</html>
+</table>     
+{% endblock %}

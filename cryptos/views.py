@@ -1,25 +1,23 @@
+import os
+
 from flask import render_template
 
 from . import app
-
-from .models import ListaMovimientos
-
-# mediante un decorador asignamos una ruta (path) de la URL
-# a la función que debe ejecutarse cuando se recibe una petición 
-# con esa ruta
+from .models import DBManager
 
 @app.route('/')
-def movements():
-    lista = ListaMovimientos()
-    lista.leer_desde_archivo()
+def inicio():
+    ruta = os.path.join('data','simulador-cryptos.db')
+    db = DBManager
+    consulta = 'SELECT id, fecha, hora, moneda_from , cantidad_from, moneda_to, cantidad_to,P_U FROM movimientos'
+    movimientos = db.consultaSQL(consulta)
+    return render_template("inicio.html", movs=movimientos)
 
-    return render_template("inicio.html", movs = lista.lista_movimientos )
+@app.route('/compra')
+def compra():
+    return render_template("compra.html")
 
-@app.route('/purchase')
-def purchase():
-    return "Compra-venta e intercambio de cryptos y euros"
-
-@app.route('/status')
-def status():
+@app.route('/estado')
+def estado():
     return "Estado de la inversión"
 

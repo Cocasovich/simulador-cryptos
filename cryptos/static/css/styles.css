@@ -3,7 +3,7 @@ header {
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     height: 50px;
-    font-size: large;
+    font-size: 25px;
     font-weight: bolder;
     line-height: 50px;
     padding-left: 25px;
@@ -14,10 +14,18 @@ nav {
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     height: 25px;
-    font-size: 10px;
+    font-size: 13px;
     font-weight: bold;
     line-height: 25px;
     padding-left: 25px;
+}
+
+nav a, 
+nav a:active, 
+nav a:focus, 
+nav a:hover, 
+nav a:visited{
+    color: black
 }
 
 main {

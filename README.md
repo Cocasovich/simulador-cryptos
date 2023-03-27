@@ -2,9 +2,11 @@
 
 Simulador de inversiones en cryptos
 
+
 ## Cómo lanzar el programa en desarrollo
 
 1. Crear un entorno virtual 
+    
     ```
     # Windows
     python -m venv env
@@ -12,7 +14,7 @@ Simulador de inversiones en cryptos
     # Mac/Linux
     python3 - venv env
 
-    ´´´
+    ```
 
 2. Activar el entorno virtual
     ```
@@ -28,7 +30,7 @@ Simulador de inversiones en cryptos
     ```
     pip install -r requirements.txt
 
-    ´´´
+    ```
 
 
 4. Hacer una copia del archivo '.env template' como '.env'
@@ -39,7 +41,8 @@ Simulador de inversiones en cryptos
     # Mac/Linux
     cp .env_template .env
     
-    ´´´
+    ```
 
-5. Editar el archivo '.env' y cambiar (o no) el valor 'DEBUG' ('True'/'False')
+5. Editar el archivo '.env' y cambiar (o no) el valor 
+'DEBUG' ('True'/'False')
 
