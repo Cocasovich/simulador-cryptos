@@ -17,11 +17,11 @@
             {% for m in movs %}
             <tr>
                 <td>
-                 {% if m.fecha%}
-                 {{m.fecha}}
-                 {% else %}
-                 ---
-                 {% endif %}
+                    {% if m.fecha %}
+                    {{ m.fecha }}
+                    {% else %}
+                    ---
+                    {% endif %}              
                 </td>
                 <td>{{m.hora}}</td>
                 <td>{{m.moneda_from}}</td>
