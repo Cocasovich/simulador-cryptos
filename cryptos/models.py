@@ -10,17 +10,9 @@ class DBManager:
 
     def consultaSQL(self,consulta):
 
-        # Conectar la base de datos
         conexion = sqlite3.connect(self.ruta)
-
-        # Abrir un cursor
         cursor = conexion.cursor()
-
-        # Ejecutar la consulta SQL sobre ese cursor
         cursor.execute(consulta)
-
-        # Tratar los datos
-            # Obetener los datos
         datos = cursor.fetchall()
 
         movimientos = []
@@ -38,10 +30,8 @@ class DBManager:
 
             movimientos.append(movimiento)
 
-            # Cerrar la conexión
         conexion.close()
 
-            # Devolver la colección de resultados
         return movimientos
 
 
