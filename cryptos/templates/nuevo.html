@@ -10,8 +10,7 @@
 
 {% block contenido %}  
 
-<form action="" method="get">
-     
+<form action="" method="post">   
     <div class="campo-formulario">
         <label for="fecha">Fecha</label>
         <input type="date" name="date" id="fecha">
@@ -42,7 +41,9 @@
         <input type="number" name="quantity_from" id="cantidad_to">
     </div>
 
-    <button type="submit">Enviar</button>
+    <div class="acciones">
+        <button type="submit">Enviar</button>
+    </div>
 
 </form>
 

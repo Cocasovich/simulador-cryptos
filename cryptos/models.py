@@ -34,6 +34,10 @@ class DBManager:
 
         return movimientos
 
+    def agregar(self,movimiento):
+        pass
 
-       
-       
+    def guardar_archivo(self):    
+        pass
+    
+    

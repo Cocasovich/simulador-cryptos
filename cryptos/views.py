@@ -1,6 +1,6 @@
 import os
 
-from flask import render_template
+from flask import redirect, render_template, request, url_for
 
 from . import app
 from .models import DBManager
@@ -14,9 +14,15 @@ def home():
     movimientos = db.consultaSQL(consulta)
     return render_template("inicio.html", movs=movimientos)
 
-@app.route('/nuevo')
+@app.route('/nuevo', methods=['GET', 'POST'])
 def add_movement():
-    return render_template("nuevo.html")
+
+    if request.method == 'GET':
+        return render_template("nuevo.html")
+    
+    if request.method == 'POST':
+        datos = request.form
+        return redirect(url_for('home'))
 
 @app.route('/estado')
 def state():
