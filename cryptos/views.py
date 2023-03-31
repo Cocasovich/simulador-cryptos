@@ -20,6 +20,7 @@ def new_movement():
 
     if request.method == 'GET':
         formulario = MovimientoForm()
+  
         return render_template('form_movimiento.html', form=formulario)
     
     if request.method == 'POST':

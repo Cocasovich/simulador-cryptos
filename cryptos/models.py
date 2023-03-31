@@ -34,3 +34,20 @@ class DBManager:
 
         return movimientos
 
+    def consultaConParametros(self, consulta, params):
+        conexion = sqlite3.connect(self.ruta)
+        cursor = conexion.cursor()
+
+        resultado = False
+        
+        try:
+            cursor.execute(consulta,params)
+            conexion.commit()
+            resultado = True
+
+        except:
+            conexion.rollback
+
+        conexion.close()
+
+        return resultado
