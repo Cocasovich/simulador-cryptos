@@ -3,6 +3,7 @@ import os
 from flask import redirect, render_template, request, url_for
 
 from . import app
+from .forms import MovimientoForm
 from .models import DBManager
 
 RUTA =  os.path.join('cryptos/data','simulador-cryptos.db')
@@ -15,16 +16,18 @@ def home():
     return render_template("inicio.html", movs=movimientos)
 
 @app.route('/nuevo', methods=['GET', 'POST'])
-def add_movement():
+def new_movement():
 
     if request.method == 'GET':
-        return render_template("nuevo.html")
+        formulario = MovimientoForm()
+        return render_template('form_movimiento.html', form=formulario)
     
     if request.method == 'POST':
         datos = request.form
         return redirect(url_for('home'))
 
+
 @app.route('/estado')
 def state():
-    return "Estado de la inversión"
+    return "Estado de la inversion"
 

@@ -16,6 +16,7 @@ Simulador de inversiones en cryptos
     ```
 
 2. Activar el entorno virtual
+
     ```
     # Windows
     env\Scripts\activate
@@ -26,6 +27,7 @@ Simulador de inversiones en cryptos
     ´´´
 
 3. Instalar las dependencias
+
     ```
     pip install -r requirements.txt
 
@@ -33,6 +35,7 @@ Simulador de inversiones en cryptos
 
 
 4. Hacer una copia del archivo '.env template' como '.env'
+
     ```
     # Windows
     copy .env_template .env
@@ -66,6 +69,7 @@ Simulador de inversiones en cryptos
     ```
 
 2. Activar el entorno virtual
+
     ```
     # Windows
     env\Scripts\activate
@@ -76,6 +80,7 @@ Simulador de inversiones en cryptos
     ´´´
 
 3. Instalar las dependencias
+
     ```
     pip install -r requirements.dev.txt
 
@@ -83,6 +88,7 @@ Simulador de inversiones en cryptos
 
 
 4. Hacer una copia del archivo '.env template' como '.env'
+
     ```
     # Windows
     copy .env_template .env
@@ -93,5 +99,5 @@ Simulador de inversiones en cryptos
     ```
 
 5. Editar el archivo '.env' y cambiar (o no) el valor 
-'DEBUG' ('True'/'False')
+'DEBUG' ('True'/'False') y pon tu 'SECRET KEY'
 

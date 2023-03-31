@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+{{super()}}: editar movimiento
+{% endblock head_title %}
+
+{% block page_title %}
+<h1>Editar movimiento</h1>
+{% endblock page_title %}
+
+{% block contenido%}
+<form action="/nuevo">
+    {{ form.csrf_token }}
+    {{ form.id }}
+
+    <div class="campo-formulario">
+        {{ form.fecha.label }}
+        {{ form.fecha() }}
+    </div>
+
+    <div class="campo-formulario">
+        {{ form.hora.label}}
+        {{ form.hora() }}
+    </div>
+
+    <div class="campo-formulario">
+        {{ form.moneda_from.label}}
+        {{ form.moneda_from() }}
+    </div>
+
+    <div class="campo-formulario">
+        {{ form.cantidad_from.label}}
+        {{ form.cantidad_from() }}
+    </div>
+        
+    <div class="campo-formulario">
+        {{ form.moneda_to.label}}
+        {{ form.moneda_to() }}
+    </div>
+
+    <div class="campo-formulario">
+        {{ form.cantidad_to.label}}
+        {{ form.cantidad_to() }}
+    </div>
+
+    <div class="acciones">
+        {{ form.submit }}
+    </div>
+
+</form>
+{% endblock contenido %}
