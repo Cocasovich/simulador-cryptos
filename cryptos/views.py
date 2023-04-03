@@ -26,7 +26,7 @@ def new_movement():
     if request.method == 'POST':
         db = DBManager(RUTA)
         formulario = MovimientoForm(data=request.form)
-        if form.validate():
+        if formulario.validate():
 
             cantidad_from = float(formulario.cantidad_from.data)
             cantidad_to = float(formulario.cantidad_to.data)
@@ -43,9 +43,12 @@ def new_movement():
             )
             consulta = 'INSERT INTO movimientos (fecha, hora, moneda_from, cantidad_from, moneda_to, cantidad_to, precio_unitario) VALUES (?,?,?,?,?,?,?)'
             movimientos = db.consultaConParametros(consulta,params)
-            return redirect(url_for('home'))
-
-
+            if movimientos:
+                return redirect(url_for('home'))
+            return 'El movimiento no se ha podido guardar en la base de datos'
+            
+        else:
+            return "El formulario tiene errores"
 
 @app.route('/estado')
 def state():
