@@ -45,7 +45,8 @@ class DBManager:
             conexion.commit()
             resultado = True
 
-        except:
+        except sqlite3.Error as e:
+            print(f"Se ha producido este error al insertar: {e}")
             conexion.rollback
 
         conexion.close()

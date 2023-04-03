@@ -9,7 +9,7 @@
 {% endblock page_title %}
 
 {% block contenido%}
-<form action="/nuevo">
+<form action="/nuevo" method="POST">
     {{ form.csrf_token }}
 
     <div class="campo-formulario">
