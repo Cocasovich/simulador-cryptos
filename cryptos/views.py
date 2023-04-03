@@ -26,22 +26,26 @@ def new_movement():
     if request.method == 'POST':
         db = DBManager(RUTA)
         formulario = MovimientoForm(data=request.form)
-        cantidad_from = float(formulario.cantidad_from.data)
-        cantidad_to = float(formulario.cantidad_to.data)
-        precio_unitario = cantidad_from/cantidad_to
+        if form.validate():
 
-        params = (
-            formulario.fecha.data.isoformat(),
-            formulario.hora.data.isoformat(),
-            formulario.moneda_from.data,
-            cantidad_from,
-            formulario.moneda_to.data,
-            cantidad_to,
-            precio_unitario
-        )
-        consulta = 'INSERT INTO movimientos (fecha, hora, moneda_from, cantidad_from, moneda_to, cantidad_to, precio_unitario) VALUES (?,?,?,?,?,?,?)'
-        movimientos = db.consultaConParametros(consulta,params)
-        return redirect(url_for('home'))
+            cantidad_from = float(formulario.cantidad_from.data)
+            cantidad_to = float(formulario.cantidad_to.data)
+            precio_unitario = cantidad_from/cantidad_to
+
+            params = (
+                formulario.fecha.data.isoformat(),
+                formulario.hora.data.isoformat(),
+                formulario.moneda_from.data,
+                cantidad_from,
+                formulario.moneda_to.data,
+                cantidad_to,
+                precio_unitario
+            )
+            consulta = 'INSERT INTO movimientos (fecha, hora, moneda_from, cantidad_from, moneda_to, cantidad_to, precio_unitario) VALUES (?,?,?,?,?,?,?)'
+            movimientos = db.consultaConParametros(consulta,params)
+            return redirect(url_for('home'))
+
+
 
 @app.route('/estado')
 def state():
