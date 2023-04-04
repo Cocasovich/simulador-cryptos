@@ -45,10 +45,12 @@ def new_movement():
             movimientos = db.consultaConParametros(consulta,params)
             if movimientos:
                 return redirect(url_for('home'))
-            return 'El movimiento no se ha podido guardar en la base de datos'
+            return render_template('form_movimiento.html', form=formulario, 
+                                   errores=["El movimiento no se ha podido guardar en la base de datos"])
             
         else:
-            return "El formulario tiene errores"
+            return render_template('form_movimiento.html', form=formulario, 
+                                   errores=["Los datos no son válidos"])
 
 @app.route('/estado')
 def state():

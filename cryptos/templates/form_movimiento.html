@@ -9,42 +9,94 @@
 {% endblock page_title %}
 
 {% block contenido%}
-<form action="/nuevo" method="POST" >
+
+{% if errores %}
+    <div class="lista-errores">
+        <p>
+        <i class="fa-solid fa-message-exclamation fa-2xl;"></i>
+        </p>
+      <div class="mensaje-error-cabecera">
+        {% for error in errores %}
+        <p>{{ error }}</p>   
+        {% endfor%}
+      </div>
+    </div>  
+{% endif %}
+
+
+<form action="/nuevo" method="POST" novalidate>
     {{ form.csrf_token }}
 
     <div class="campo-formulario">
         {{ form.fecha.label }}
         {{ form.fecha() }}
+        {% if form.fecha.errors %}
+        <div class="mensaje-error">
+            {% for error in form.fecha.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
     </div>
 
     <div class="campo-formulario">
         {{ form.hora.label}}
         {{ form.hora() }}
+        {% if form.hora.errors %}
+        <div class="mensaje-error">
+            {% for error in form.hora.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
     </div>
 
     <div class="campo-formulario">
         {{ form.moneda_from.label}}
         {{ form.moneda_from() }}
+        {% if form.moneda_from.errors %}
+        <div class="mensaje-error">
+            {% for error in form.moneda_from.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
     </div>
 
     <div class="campo-formulario">
         {{ form.cantidad_from.label}}
         {{ form.cantidad_from() }}
+        {% if form.cantidad_from.errors %}
+        <div class="mensaje-error">
+            {% for error in form.cantidad_from.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
     </div>
         
     <div class="campo-formulario">
         {{ form.moneda_to.label}}
         {{ form.moneda_to() }}
+        {% if form.moneda_to.errors %}
+        <div class="mensaje-error">
+            {% for error in form.moneda_to.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
     </div>
 
     <div class="campo-formulario">
         {{ form.cantidad_to.label}}
         {{ form.cantidad_to() }}
-    </div>
-
-    <div class="campo-formulario">
-        {{ form.precio_unitario.label}}
-        {{ form.precio_unitario() }}
+        {% if form.cantidad_to.errors %}
+        <div class="mensaje-error">
+            {% for error in form.cantidad_to.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
     </div>
 
     <div class="acciones">
