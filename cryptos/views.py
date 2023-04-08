@@ -1,16 +1,18 @@
 import os
-
-from flask import redirect, render_template, request, url_for
-
+import sqlite3
+import requests
+import datetime
+from flask import render_template, redirect, request, url_for, flash
 from . import app
 from .forms import MovimientoForm
-from .models import DBManager
+from .models import DBManager, APIManager, APIException
 
 RUTA =  os.path.join('cryptos/data','simulador-cryptos.db')
+db = DBManager(RUTA)
+api_manager = APIManager(app.config.get("COIN_API_URL"), app.config.get("API_KEY"))
 
 @app.route('/')
 def home():
-    db = DBManager(RUTA)
     consulta = 'SELECT id, fecha, hora, moneda_from , cantidad_from, moneda_to, cantidad_to,precio_unitario FROM movimientos'
     movimientos = db.consultaSQL(consulta)
     return render_template("inicio.html", movs=movimientos)
@@ -23,34 +25,49 @@ def new_movement():
   
         return render_template('form_movimiento.html', form=formulario)
     
-    if request.method == 'POST':
-        db = DBManager(RUTA)
+    else:
         formulario = MovimientoForm(data=request.form)
-        if formulario.validate():
+        if formulario.validate_on_submit():
+            if formulario.data["calcular"]:
+                try: 
+                    cantidad_to = api_manager.calcular_tasa(formulario.data.get("moneda_from"),
+                                                            formulario.data.get("cantidad_from"),
+                                                            formulario.data.get("moneda_to"))
+             
+                except APIException as error:
+                    print("Se ha producido un error al consultar la tasa:", error)
+                    flash(f"Se ha producido un error al consultar la tasa: {error}")
+                    return render_template("form_movimiento.html", form=formulario)
+                except requests.RequestException as error:
+                    print("Se ha producido un error al consultar la tasa:", error)
+                    flash(f"Se ha producido un error al consultar la tasa")
+                    return render_template("form_movimiento.html", form=formulario)
+                    
+                formulario.cantidad_to.data = cantidad_to
+                formulario.cantidad_toH.data = cantidad_to
 
-            cantidad_from = float(formulario.cantidad_from.data)
-            cantidad_to = float(formulario.cantidad_to.data)
-            precio_unitario = cantidad_from/cantidad_to
+                return render_template('form_movimiento.html', form=formulario)
 
-            params = (
-                formulario.fecha.data.isoformat(),
-                formulario.hora.data.isoformat(),
-                formulario.moneda_from.data,
-                cantidad_from,
-                formulario.moneda_to.data,
-                cantidad_to,
-                precio_unitario
-            )
-            consulta = 'INSERT INTO movimientos (fecha, hora, moneda_from, cantidad_from, moneda_to, cantidad_to, precio_unitario) VALUES (?,?,?,?,?,?,?)'
-            movimientos = db.consultaConParametros(consulta,params)
-            if movimientos:
-                return redirect(url_for('home'))
-            return render_template('form_movimiento.html', form=formulario, 
-                                   errores=["El movimiento no se ha podido guardar en la base de datos"])
-            
+            elif formulario.data["submit"]:
+                now = (datetime.datetime.now())
+                fecha = now.strftime("%Y-%m-%d")
+                hora = now.strftime("%H:%M:%S")
+                cantidad_from = float(formulario.cantidad_from.data)
+                cantidad_to = float(formulario.cantidad_toH.data)
+                precio_unitario = cantidad_from/cantidad_to                
+                db.consultaConParametros("""INSERT INTO movimientos (fecha, hora, moneda_from,cantidad_from,moneda_to,cantidad_to,precio_unitario) VALUES (?,?,?,?,?,?,?)""",
+                                         [fecha, hora,formulario.moneda_from.data,
+                                         formulario.cantidad_from.data,
+                                         formulario.moneda_to.data,
+                                         float(formulario.cantidad_toH.data),
+                                         precio_unitario])
+                
+                return redirect(url_for("home"))
+
         else:
-            return render_template('form_movimiento.html', form=formulario, 
-                                   errores=["Los datos no son válidos"])
+            return render_template("form_movimiento.html", form=formulario)
+
+
 
 @app.route('/estado')
 def state():

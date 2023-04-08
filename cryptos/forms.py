@@ -1,15 +1,21 @@
 
 from flask_wtf import FlaskForm
-from wtforms import DateField,TimeField,DecimalField,HiddenField,RadioField,StringField,SubmitField
-from wtforms.validators import DataRequired
+from wtforms import FloatField, SubmitField, SelectField, HiddenField
+from wtforms.validators import DataRequired, NumberRange, ValidationError, Optional
+
+choices = ["EUR", "BTC", "ETH", "USDT", "ADA", "SOL", "XRP", "DOT", "DODGE", "SHIB"]
 
 class MovimientoForm(FlaskForm):
-    id = HiddenField()
-    fecha = DateField('Fecha', validators = [DataRequired(message="Debes introducir una fecha")])
-    hora = TimeField('Hora', validators=[DataRequired(message="Debes introducir la hora")])
-    moneda_from = StringField('From', validators=[DataRequired(message="Debes especificar una divisa")])
-    cantidad_from = DecimalField('Q', places=2, validators=[DataRequired(message="La cantidad debe tener un valor")])
-    moneda_to = StringField('To', validators=[DataRequired(message="Debes especificar una divisa")])
-    cantidad_to = DecimalField('Q', places=2, validators=[DataRequired(message="La cantidad debe tener un valor")])
+    moneda_from = SelectField("Origen", choices=choices, validators=[DataRequired("Debe informar una divisa de origen")])
+    cantidad_from = FloatField("Cantidad", 
+                                    validators=[DataRequired("Debe informar una cantidad"), NumberRange(message="Debe ser una cantidad positiva", min=0.01)])
+    moneda_to = SelectField("Destino", choices=choices, validators=[DataRequired("Debe informar una divisa de origen")])
+    cantidad_to = FloatField("Cantidad", validators=[Optional()])
+    cantidad_toH = HiddenField()
+    
+    calcular = SubmitField("Calcular")
+    submit = SubmitField("Aceptar")
 
-    submit = SubmitField('Guardar')
+    def validate_cantidad_to(form, campo):
+            if campo.data and campo.data < 0.01:
+                raise ValidationError("Debe ser una cantidad positiva")    

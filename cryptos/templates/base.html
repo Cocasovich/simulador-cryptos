@@ -16,7 +16,18 @@
     {% include 'components/header.html'%}
     {% include 'components/navbar.html'%}
 
+   {% with messsages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash_board">
+                <ul>
+                    {% for message in messages %}
+                    <li>{{message}}</li>
+                    {% endfor %}
+                </ul>
 
+            </div> 
+        {% endif %}
+    {% endwith %}
     <main>
 
         {% block page_title%}

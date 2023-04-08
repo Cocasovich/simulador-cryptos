@@ -27,29 +27,6 @@
 <form action="/nuevo" method="POST" novalidate>
     {{ form.csrf_token }}
 
-    <div class="campo-formulario">
-        {{ form.fecha.label }}
-        {{ form.fecha() }}
-        {% if form.fecha.errors %}
-        <div class="mensaje-error">
-            {% for error in form.fecha.errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
-    </div>
-
-    <div class="campo-formulario">
-        {{ form.hora.label}}
-        {{ form.hora() }}
-        {% if form.hora.errors %}
-        <div class="mensaje-error">
-            {% for error in form.hora.errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
-    </div>
 
     <div class="campo-formulario">
         {{ form.moneda_from.label}}
@@ -87,9 +64,13 @@
     {% endif %}
     </div>
 
+    <div class="acciones">
+        {{ form.calcular(class="blue-button")}}        
+    </div>
+
     <div class="campo-formulario">
         {{ form.cantidad_to.label}}
-        {{ form.cantidad_to() }}
+        {{ form.cantidad_to(disabled=True, value=form.cantidad_to.data or '') }}
         {% if form.cantidad_to.errors %}
         <div class="mensaje-error">
             {% for error in form.cantidad_to.errors %}
@@ -99,8 +80,12 @@
     {% endif %}
     </div>
 
+        {{ form.cantidad_toH() }}
+    
+   
+
     <div class="acciones">
-        {{ form.submit }}
+        {{ form.submit(class="red-button") }}
     </div>
 
 </form>

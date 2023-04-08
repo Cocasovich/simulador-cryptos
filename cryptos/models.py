@@ -1,5 +1,6 @@
 from datetime import date
 
+import requests
 import sqlite3
 
 class DBManager:
@@ -52,3 +53,26 @@ class DBManager:
         conexion.close()
 
         return resultado
+    
+
+
+class APIException(Exception):
+    pass
+
+class APIManager:
+    
+    def __init__(self, url, key):
+        self.url = url
+        self.key = key
+
+    def calcular_tasa(self,moneda_from,cantidad_from,moneda_to):
+        url = self.url.format(moneda_from, moneda_to,self.key)
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            tasa = data["rate"]
+
+            total_cambio = tasa * cantidad_from
+            return total_cambio
+        
+        raise APIException(f"{response.status_code} - {response.text}")
