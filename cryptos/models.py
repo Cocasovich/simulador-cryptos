@@ -76,3 +76,4 @@ class APIManager:
             return total_cambio
         
         raise APIException(f"{response.status_code} - {response.text}")
+    

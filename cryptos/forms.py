@@ -18,4 +18,8 @@ class MovimientoForm(FlaskForm):
 
     def validate_cantidad_to(form, campo):
             if campo.data and campo.data < 0.01:
-                raise ValidationError("Debe ser una cantidad positiva")    
+                raise ValidationError("Debe ser una cantidad positiva") 
+
+    def validate_moneda_to(form, campo):
+            if form.moneda_from.data == campo.data:
+                raise ValidationError("Deben ser monedas diferentes")

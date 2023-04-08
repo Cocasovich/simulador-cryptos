@@ -16,8 +16,7 @@
     {% include 'components/header.html'%}
     {% include 'components/navbar.html'%}
 
-   {% with messsages = get_flashed_messages() %}
-        {% if messages %}
+    {% with messages = get_flashed_messages() %}
             <div class="flash_board">
                 <ul>
                     {% for message in messages %}
@@ -26,7 +25,6 @@
                 </ul>
 
             </div> 
-        {% endif %}
     {% endwith %}
     <main>
 

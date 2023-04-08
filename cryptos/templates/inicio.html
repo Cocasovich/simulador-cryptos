@@ -6,10 +6,10 @@
             <tr>
                 <th class="titulo-table">Fecha</th>
                 <th class="titulo-table">Hora</th>
+                <th class="titulo-table">Q</th>
                 <th class="titulo-table">From</th>
                 <th class="titulo-table">Q</th>
                 <th class="titulo-table">To</th>
-                <th class="titulo-table">Q</th>
                 <th class="titulo-table">P_U</th>
             </tr> 
 
@@ -24,10 +24,10 @@
                     {% endif %}              
                 </td>
                 <td>{{m.hora}}</td>
-                <td>{{m.moneda_from}}</td>
                 <td class="numero">{{m.cantidad_from | round(8)}}</td>
-                <td>{{m.moneda_to}}</td>
+                <td>{{m.moneda_from}}</td>
                 <td class="numero">{{m.cantidad_to | round(8)}}</td>
+                <td>{{m.moneda_to}}</td>
                 <td class="numero">{{m.precio_unitario | round(8)}}</td>
             </tr>
             {% if m.has_errors %}

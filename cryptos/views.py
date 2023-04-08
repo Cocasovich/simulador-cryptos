@@ -6,6 +6,7 @@ from flask import render_template, redirect, request, url_for, flash
 from . import app
 from .forms import MovimientoForm
 from .models import DBManager, APIManager, APIException
+from .tools import cantidad_disponible
 
 RUTA =  os.path.join('cryptos/data','simulador-cryptos.db')
 db = DBManager(RUTA)
@@ -22,18 +23,29 @@ def new_movement():
 
     if request.method == 'GET':
         formulario = MovimientoForm()
-  
         return render_template('form_movimiento.html', form=formulario)
     
     else:
         formulario = MovimientoForm(data=request.form)
         if formulario.validate_on_submit():
             if formulario.data["calcular"]:
+                
+                if formulario.data.get("moneda_from") != 'EUR':
+                    consulta = 'SELECT moneda_from, cantidad_from, moneda_to, cantidad_to FROM movimientos'
+                    movimientos = db.consultaSQL(consulta)
+                    
+                    total_disponible = cantidad_disponible(formulario.data.get("moneda_from"), movimientos)
+                    if total_disponible < formulario.data.get("cantidad_from"):
+    
+                        flash(f"La cantidad de {formulario.data.get('moneda_from')} no es suficiente")
+                        return render_template("form_movimiento.html", form=formulario)
+                
+                
                 try: 
                     cantidad_to = api_manager.calcular_tasa(formulario.data.get("moneda_from"),
                                                             formulario.data.get("cantidad_from"),
                                                             formulario.data.get("moneda_to"))
-             
+            
                 except APIException as error:
                     print("Se ha producido un error al consultar la tasa:", error)
                     flash(f"Se ha producido un error al consultar la tasa: {error}")
