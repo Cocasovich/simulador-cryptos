@@ -3,13 +3,18 @@ from datetime import date
 import requests
 import sqlite3
 
+
+class DBException(Exception):
+    pass
+
+
 class DBManager:
-    
+
     def __init__(self, ruta):
 
         self.ruta = ruta
 
-    def consultaSQL(self,consulta):
+    def consultaSQL(self, consulta):
 
         conexion = sqlite3.connect(self.ruta)
         cursor = conexion.cursor()
@@ -20,7 +25,6 @@ class DBManager:
         nombres_columna = []
         for columna in cursor.description:
             nombres_columna.append(columna[0])
-        
 
         for dato in datos:
             indice = 0
@@ -40,9 +44,9 @@ class DBManager:
         cursor = conexion.cursor()
 
         resultado = False
-        
+
         try:
-            cursor.execute(consulta,params)
+            cursor.execute(consulta, params)
             conexion.commit()
             resultado = True
 
@@ -53,20 +57,20 @@ class DBManager:
         conexion.close()
 
         return resultado
-    
 
 
 class APIException(Exception):
     pass
 
+
 class APIManager:
-    
+
     def __init__(self, url, key):
         self.url = url
         self.key = key
 
-    def calcular_tasa(self,moneda_from,cantidad_from,moneda_to):
-        url = self.url.format(moneda_from, moneda_to,self.key)
+    def calcular_tasa(self, moneda_from, cantidad_from, moneda_to):
+        url = self.url.format(moneda_from, moneda_to, self.key)
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
@@ -74,6 +78,5 @@ class APIManager:
 
             total_cambio = tasa * cantidad_from
             return total_cambio
-        
+
         raise APIException(f"{response.status_code} - {response.text}")
-    
