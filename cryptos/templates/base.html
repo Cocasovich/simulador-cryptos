@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block head_title %}Cryptos - APP{% endblock%} </title>
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="shortcut icon" href="/static/css/images/icons8-monedas-80.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/flat-remix.css">
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
@@ -25,19 +26,19 @@
 
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <div class="lista-errores">
-                <i class="fas fa-exclamation-triangle"></i>
-                <ul>
-                    {% for message in messages %}
-                    <li>{{message}}</li>
-                    {% endfor %}
-                </ul>
+        <div class="lista-errores">
+            <i class="fas fa-exclamation-triangle"></i>
+            <ul>
+                {% for message in messages %}
+                <li>{{message}}</li>
+                {% endfor %}
+            </ul>
 
-            </div> 
+        </div>
         {% endif %}
-    {% endwith %}
+        {% endwith %}
 
-        {% block contenido %}     
+        {% block contenido %}
         {% endblock %}
     </main>
 
@@ -46,4 +47,5 @@
     {% include 'components/footer.html'%}
 
 </body>
+
 </html>
