@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block head_title %}
-{{super()}}: editar movimiento
+{{super()}}: Editar movimiento
 {% endblock head_title %}
 
 {% block page_title %}
@@ -11,16 +11,16 @@
 {% block contenido%}
 
 {% if errores %}
-    <div class="lista-errores">
-        <p>
+<div class="lista-errores">
+    <p>
         <i class="fa-solid fa-message-exclamation fa-2xl;"></i>
-        </p>
-      <div class="mensaje-error-cabecera">
+    </p>
+    <div class="mensaje-error-cabecera">
         {% for error in errores %}
-        <p>{{ error }}</p>   
+        <p>{{ error }}</p>
         {% endfor%}
-      </div>
-    </div>  
+    </div>
+</div>
 {% endif %}
 
 
@@ -34,10 +34,10 @@
         {% if form.moneda_from.errors %}
         <div class="mensaje-error">
             {% for error in form.moneda_from.errors %}
-                <p>{{ error }}</p>
+            <p>{{ error }}</p>
             {% endfor %}
         </div>
-    {% endif %}
+        {% endif %}
     </div>
 
     <div class="campo-formulario">
@@ -46,26 +46,26 @@
         {% if form.cantidad_from.errors %}
         <div class="mensaje-error">
             {% for error in form.cantidad_from.errors %}
-                <p>{{ error }}</p>
+            <p>{{ error }}</p>
             {% endfor %}
         </div>
-    {% endif %}
+        {% endif %}
     </div>
-        
+
     <div class="campo-formulario">
         {{ form.moneda_to.label}}
         {{ form.moneda_to() }}
         {% if form.moneda_to.errors %}
         <div class="mensaje-error">
             {% for error in form.moneda_to.errors %}
-                <p>{{ error }}</p>
+            <p>{{ error }}</p>
             {% endfor %}
         </div>
-    {% endif %}
+        {% endif %}
     </div>
 
     <div class="acciones">
-        {{ form.calcular(class="blue-button")}}        
+        {{ form.calcular(class="blue-button")}}
     </div>
 
     <div class="campo-formulario">
@@ -74,15 +74,15 @@
         {% if form.cantidad_to.errors %}
         <div class="mensaje-error">
             {% for error in form.cantidad_to.errors %}
-                <p>{{ error }}</p>
+            <p>{{ error }}</p>
             {% endfor %}
         </div>
-    {% endif %}
+        {% endif %}
     </div>
 
-        {{ form.cantidad_toH() }}
-    
-   
+    {{ form.cantidad_toH() }}
+
+
 
     <div class="acciones">
         {{ form.submit(class="red-button") }}

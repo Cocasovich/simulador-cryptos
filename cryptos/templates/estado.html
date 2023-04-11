@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 
+{% block head_title %}
+{{super()}}: Estado de la inversion
+{% endblock head_title %}
+
 {% block page_title %}
 <h1>Estado de la inversion</h1>
 {% endblock page_title %}
 
 {% block contenido %}
+
 <body>
 	<div class="container">
 		<div class="card">
 			<p class="resultado"><strong>Total de euros invertidos:</strong> {{ total_from_euros }}</p>
 			<p class="resultado"><strong>Saldo disponible en euros:</strong> {{ saldo }}</p>
-			<p class="resultado"><strong>Total de criptomonedas convertidas a euros:</strong> {{ total_cypto_a_euro }}</p>
+			<p class="resultado"><strong>Total de criptomonedas convertidas a euros:</strong> {{ total_cypto_a_euro }}
+			</p>
 			<p class="resultado"><strong>Total de inversión:</strong> {{ total_inversion }}</p>
 		</div>
 	</div>
