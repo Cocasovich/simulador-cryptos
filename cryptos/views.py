@@ -106,14 +106,13 @@ def state():
     for clave, valor in wallet.items():
 
         valor_wallet_euros = api_manager.calcular_tasa(clave, valor, 'EUR')
-        total_cypto_a_euro = valor_wallet_euros + total_cypto_a_euro
+        total_cypto_a_euro = round(valor_wallet_euros + total_cypto_a_euro, 2)
 
     total_from_euros, saldo = saldo_euros_invertidos(movimientos)
 
-    print(total_from_euros)
-    print(saldo)
-    print(total_cypto_a_euro)
-
     total_inversion = total_from_euros + saldo + total_cypto_a_euro
 
-    return str(total_inversion)
+    return render_template('estado.html', total_from_euros=f'{total_from_euros:.2f} €', 
+                    saldo=f'{saldo:.2f} €', 
+                    total_cypto_a_euro=f'{total_cypto_a_euro:.2f} €', 
+                    total_inversion=f'{total_inversion:.2f} €')

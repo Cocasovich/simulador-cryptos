@@ -16,8 +16,17 @@
     {% include 'components/header.html'%}
     {% include 'components/navbar.html'%}
 
-    {% with messages = get_flashed_messages() %}
-            <div class="flash_board">
+
+    <main>
+
+        {% block page_title%}
+        <h1>App de movimientos</h1>
+        {% endblock page_title%}
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="lista-errores">
+                <i class="fas fa-exclamation-triangle"></i>
                 <ul>
                     {% for message in messages %}
                     <li>{{message}}</li>
@@ -25,16 +34,14 @@
                 </ul>
 
             </div> 
+        {% endif %}
     {% endwith %}
-    <main>
-
-        {% block page_title%}
-        <h1>App de movimientos</h1>
-        {% endblock page_title%}
 
         {% block contenido %}     
         {% endblock %}
     </main>
+
+
 
     {% include 'components/footer.html'%}
 

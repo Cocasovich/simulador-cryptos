@@ -16,13 +16,7 @@
             {% if movs%}    
             {% for m in movs %}
             <tr>
-                <td>
-                    {% if m.fecha %}
-                    {{ m.fecha }}
-                    {% else %}
-                    ---
-                    {% endif %}              
-                </td>
+                <td>{{m.fecha }}</td>
                 <td>{{m.hora}}</td>
                 <td class="numero">{{m.cantidad_from | round(8)}}</td>
                 <td>{{m.moneda_from}}</td>
