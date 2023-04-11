@@ -1,13 +1,13 @@
 :root {
     --primary-color: #176ab8;
     --secondary-color: #19a171;
-  
+
     --medium-gray: #666;
     --error-color: var(--primary-color);
-  
+
     --default-border: solid thin var(--secondary-color)
-  }
-  
+}
+
 
 header {
     background-color: var(--primary-color);
@@ -26,12 +26,12 @@ nav {
     padding-left: 25px;
 }
 
-nav a, 
-nav a:active, 
-nav a:focus, 
-nav a:hover, 
+nav a,
+nav a:active,
+nav a:focus,
+nav a:hover,
 nav a:visited,
-nav a{
+nav a {
     color: white;
 }
 
@@ -52,7 +52,7 @@ table.paper {
 
 .numero,
 .acciones {
-  text-align: right;
+    text-align: right;
 }
 
 .error {
@@ -67,7 +67,7 @@ table.paper {
     padding: 20px;
     color: var(--medium-gray);
 }
-  
+
 
 .pie-pagina {
     padding: 20px;
@@ -89,7 +89,7 @@ table.paper {
 
 .lista-errores {
     font-size: 1rem;
-    background-color: rgba(200,0,0, .25);
+    background-color: rgba(200, 0, 0, .25);
     padding: 2rem;
     color: darkred;
     border: solid 2px darkred;
@@ -101,9 +101,10 @@ table.paper {
 }
 
 .lista-errores i {
-  color: darkred; 
-  font-size: 1.5rem; 
+    color: darkred;
+    font-size: 1.5rem;
 }
+
 .mensaje-error-cabecera {
     color: darkred
 }
@@ -112,7 +113,7 @@ table.paper {
     color: darkred;
     font-style: italic;
     margin-top: 2px;
-} 
+}
 
 .card {
     background-color: #ffffff;
