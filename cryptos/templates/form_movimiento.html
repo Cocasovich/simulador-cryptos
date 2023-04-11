@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block head_title %}
-{{super()}}: Editar movimiento
+{{super()}}: Nuevo movimiento
 {% endblock head_title %}
 
 {% block page_title %}
-<h1>Editar movimiento</h1>
+<h1>Nuevo movimiento</h1>
 {% endblock page_title %}
 
-{% block contenido%}
 
+{% block contenido%}
 {% if errores %}
 <div class="lista-errores">
     <p>
@@ -25,6 +25,8 @@
 
 
 <form class="formulario" action="/nuevo" method="POST" novalidate>
+    <img class=imagen src="{{ url_for('static', filename='css/images/calculadora.png') }}" alt="Calculadora">
+
     {{ form.csrf_token }}
 
 
@@ -89,4 +91,6 @@
     </div>
 
 </form>
+
+
 {% endblock contenido %}

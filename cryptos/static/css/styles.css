@@ -41,6 +41,7 @@ main {
     padding: 20px;
 }
 
+
 table.paper {
     width: 100%;
 }
@@ -48,6 +49,13 @@ table.paper {
 .titulo-table {
     border-bottom: var(--default-border);
     text-align: left;
+}
+
+
+h1 {
+    font-size: 4em;
+    font-weight: lighter;
+    margin: .4em 0;
 }
 
 .numero,
@@ -75,17 +83,55 @@ table.paper {
 }
 
 
+.imagen {
+    width: 450px;
+    height: 430px;
+    float: right;
+    margin-left: 50px;
+}
+
 .campo-formulario label {
     display: block;
     font-size: 1rem;
     font-weight: bold;
     padding: 0;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    max-width: 600px;
+
+}
+
+.campo-formulario select {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0;
+    padding-right: 116px;
+    margin-top: 0.5rem;
+    max-width: 600px;
+
 }
 
 .campo-formulario input {
-    width: 100%;
+    max-width: 600px;
 }
+
+.red-button,
+input.red-button {
+    background: #b8174c;
+    border-color: #811035;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.blue-button,
+input.blue-button {
+    background: #367bf0;
+    border-color: #2656a8;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+
 
 .lista-errores {
     font-size: 1rem;
