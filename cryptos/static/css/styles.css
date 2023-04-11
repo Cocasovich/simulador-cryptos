@@ -41,6 +41,9 @@ main {
     padding: 20px;
 }
 
+.cabecera {
+    text-align: center;
+}
 
 table.paper {
     width: 100%;
@@ -130,7 +133,6 @@ input.blue-button {
     margin-top: 1rem;
     margin-bottom: 1.5rem;
 }
-
 
 
 .lista-errores {
